@@ -11,8 +11,11 @@ export default class SampleJob implements BullMQJobDefinition {
     this.payload = payload;
   }
 
-  handle = () => {
+  handle = (job?: Job) => {
     console.log("Handler of the JOB is called");
+    if (job) {
+      console.log(job.name, job.id, job.data);
+    }
   };
 
   failed = (job?: Job): void => {
